@@ -15,21 +15,27 @@ import { Camera, Permissions } from 'expo'
 type Props = {};
 export default class CameraScreen extends Component<Props> {
 
-  upload = () => {
-    debugger
+  constructor() {
+    super()
+    this.state = {
+      hasCameraPermission: null,
+      type: Camera.Constants.Type.back,
+    }
+  }
+
+  async componentDidMount() {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA)
+    this.setState( { hasCameraPermission: status === 'granted' })
   }
 
   render() {
     return (
       <View style={ styles.container }>
         <Header header="Take picture of handout"/>
-        <Camera></Camera>
-        <Button
-          title="Upload image"
-          onPress={ this.upload }
-        />
+        <Camera style={ {flex: 1} } type={ this.state.type }>
+        </Camera>
       </View>
-    );
+    )
   }
 }
 
