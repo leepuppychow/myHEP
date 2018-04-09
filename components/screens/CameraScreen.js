@@ -10,9 +10,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 import Header from '../Header'
-
-// import RNCloudinary from 'react-native-cloudinary-x'
-// RNCloudinary.init('333221264261911','dF39uehusWB98IIUNYudKTV8hbc', 'leepuppychow')
+import { Camera, Permissions } from 'expo'
 
 type Props = {};
 export default class CameraScreen extends Component<Props> {
@@ -25,6 +23,7 @@ export default class CameraScreen extends Component<Props> {
     return (
       <View style={ styles.container }>
         <Header header="Take picture of handout"/>
+        <Camera></Camera>
         <Button
           title="Upload image"
           onPress={ this.upload }
