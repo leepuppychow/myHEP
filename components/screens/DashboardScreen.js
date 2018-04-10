@@ -47,7 +47,7 @@ export default class DashboardScreen extends Component<Props> {
     return (
       <View style={ styles.container }>
         <Header header="Dashboard"/>
-        <Text>Workout for the day</Text>
+        <Text style={ styles.sectionHeader }>Today's Workout:</Text>
         <WorkoutsContainer workouts={ this.state.workouts } />
         <Text>Your Activity Levels</Text>
       </View>
@@ -62,4 +62,10 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
   },
+  sectionHeader: {
+    fontSize: 24,
+    marginTop: 10,
+    marginBottom: 10,
+    textDecorationLine: 'underline',
+  }
 });
