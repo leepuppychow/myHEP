@@ -16,7 +16,7 @@ type Props = {};
 export default class WorkoutsContainer extends Component<Props> {
   render() {
     return (
-      <ScrollView horizontal={true}>
+      <ScrollView>
         <View style={ styles.container }>
           {
             this.props.workouts.map(workout =>
@@ -30,7 +30,6 @@ export default class WorkoutsContainer extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',

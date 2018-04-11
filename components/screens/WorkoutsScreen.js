@@ -9,7 +9,9 @@ import {
   AlertIOS,
   AsyncStorage,
 } from 'react-native';
+import { TabNavigator } from 'react-navigation'
 import Header from '../Header'
+import WorkoutCard from '../workouts/WorkoutCard'
 import WorkoutsContainer from '../workouts/WorkoutsContainer'
 import CameraScreen from './CameraScreen'
 
@@ -46,13 +48,54 @@ export default class WorkoutsScreen extends Component<Props> {
       })
   }
 
-  render() {
+  getWorkoutCard = (workout) => {
+    return () => (<WorkoutCard workout={ workout }/>)
+  }
+
+  getWorkoutTabs = () => {
+    return this.state.workouts.reduce((tabs, workout) => {
+      tabs[workout.name] = this.getWorkoutCard(workout)
+      return tabs
+    }, {})
+  }
+
+  loadingMessage = () => {
     return (
       <View style={ styles.container }>
         <Header header="Workouts" />
-        <WorkoutsContainer workouts={ this.state.workouts } />
+        <Text>Loading workouts...</Text>
       </View>
+    )
+  }
+
+  showWorkouts = () => {
+    const routes = this.getWorkoutTabs()
+    const tabConfig = {
+        tabBarPosition: 'top',
+        tabBarOptions: {
+          scrollEnabled: true,
+          upperCaseLabel: false,
+          style: {
+            backgroundColor: 'powderblue',
+            height: 20,
+          },
+          labelStyle: {
+            fontSize: 16,
+          },
+        },
+    }
+    const WorkoutTabs = TabNavigator(routes, tabConfig)
+    return (
+      <WorkoutTabs />
     );
+  }
+
+  render() {
+    if (this.state.workouts.length) {
+      return this.showWorkouts()
+    } else {
+      return this.loadingMessage()
+    }
   }
 }
 

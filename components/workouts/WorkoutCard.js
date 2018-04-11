@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   TextInput,
   Button,
   AlertIOS,
@@ -15,15 +16,17 @@ type Props = {};
 export default class WorkoutCard extends Component<Props> {
   render() {
     return (
-      <View>
-        <Text style={ styles.header }>
-          { this.props.workout.name} from { this.props.workout.therapist}
-        </Text>
-        <Text>
-          { this.props.workout.weekdays.join(", ")}
-        </Text>
-        <ExercisesContainer exercises={ this.props.workout.workout_exercises }/>
-      </View>
+      <ScrollView>
+        <View style={ styles.container }>
+          <Text style={ styles.header }>
+            { this.props.workout.name} from { this.props.workout.therapist}
+          </Text>
+          <Text>
+            { this.props.workout.weekdays.join(", ")}
+          </Text>
+          <ExercisesContainer exercises={ this.props.workout.workout_exercises }/>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -31,5 +34,8 @@ export default class WorkoutCard extends Component<Props> {
 const styles = StyleSheet.create({
   header: {
     fontSize: 20,
-  }
+  },
+  container: {
+    marginTop: 20,
+  },
 });
