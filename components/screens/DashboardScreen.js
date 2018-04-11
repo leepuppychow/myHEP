@@ -46,10 +46,9 @@ export default class DashboardScreen extends Component<Props> {
   render() {
     return (
       <View style={ styles.container }>
-        <Header header="Dashboard"/>
+        <Text style={ styles.sectionHeader }>Your Activity Levels</Text>
         <Text style={ styles.sectionHeader }>Today's Workout:</Text>
         <WorkoutsContainer workouts={ this.state.workouts } />
-        <Text style={ styles.sectionHeader }>Your Activity Levels</Text>
       </View>
     );
   }
