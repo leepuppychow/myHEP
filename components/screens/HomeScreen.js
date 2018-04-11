@@ -55,7 +55,7 @@ export default class HomeScreen extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
   },

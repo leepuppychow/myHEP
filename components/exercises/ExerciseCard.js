@@ -4,21 +4,29 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
   Button,
-  AlertIOS,
   AsyncStorage,
+  Image,
 } from 'react-native';
 
 type Props = {};
 export default class ExerciseCard extends Component<Props> {
   render() {
     return (
-      <View>
-        <Text>{ this.props.exercise.name} - { this.props.exercise.category}</Text>
-        <Text>{ this.props.exercise.image}</Text>
-        <Text>{ this.props.exercise.description}</Text>
-        <Text>{ this.props.exercise.sets} x { this.props.exercise.reps }</Text>
+      <View style={styles.container}>
+        <Text style= {styles.exerciseName}>
+          { this.props.exercise.name} ({ this.props.exercise.category})
+        </Text>
+        <Text>
+          { this.props.exercise.sets} x { this.props.exercise.reps } repetitions
+        </Text>
+        <Image
+          source={{ uri: this.props.exercise.image }}
+          style={ styles.image }
+        />
+        <Text style={styles.description}>
+          { this.props.exercise.description}
+        </Text>
       </View>
     );
   }
@@ -26,9 +34,19 @@ export default class ExerciseCard extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'center',
+    backgroundColor: 'lightgrey',
+    margin: 10,
   },
+  image: {
+    width: 175,
+    height: 175,
+    padding: 5,
+  },
+  exerciseName: {
+    fontWeight: 'bold',
+  },
+  description: {
+    fontStyle: "italic",
+  }
 });
