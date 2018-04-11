@@ -49,7 +49,7 @@ export default class DashboardScreen extends Component<Props> {
         <Header header="Dashboard"/>
         <Text style={ styles.sectionHeader }>Today's Workout:</Text>
         <WorkoutsContainer workouts={ this.state.workouts } />
-        <Text>Your Activity Levels</Text>
+        <Text style={ styles.sectionHeader }>Your Activity Levels</Text>
       </View>
     );
   }
@@ -58,7 +58,7 @@ export default class DashboardScreen extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
   },
@@ -67,5 +67,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textDecorationLine: 'underline',
+    textAlign: 'center',
   }
 });

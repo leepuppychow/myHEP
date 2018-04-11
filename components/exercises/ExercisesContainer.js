@@ -15,7 +15,7 @@ type Props = {};
 export default class ExercisesContainer extends Component<Props> {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         {
           this.props.exercises.map(exercise =>
           <ExerciseCard key={ exercise.id } exercise={ exercise } />)
@@ -27,7 +27,6 @@ export default class ExercisesContainer extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',

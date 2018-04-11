@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   TextInput,
   Button,
   AlertIOS,
@@ -15,21 +16,23 @@ type Props = {};
 export default class WorkoutsContainer extends Component<Props> {
   render() {
     return (
-      <View>
-        {
-          this.props.workouts.map(workout =>
-          <WorkoutCard key={ workout.id } workout={ workout } />)
-        }
-      </View>
+      <ScrollView horizontal={true}>
+        <View style={ styles.container }>
+          {
+            this.props.workouts.map(workout =>
+              <WorkoutCard key={ workout.id } workout={ workout } />)
+          }
+        </View>
+      </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
 });
