@@ -8,6 +8,14 @@ class Service {
       "headers": {"Authorization": "Bearer " + token}
     }
   }
+
+  postOptions(body) {
+    return {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }
+  }
 }
 
 module.exports = Service
