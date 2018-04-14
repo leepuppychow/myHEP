@@ -1,16 +1,10 @@
 import config from '../config'
+import Service from './service'
 
-class TextDetector {
+class TextDetector extends Service {
   constructor(photo) {
+    super()
     this.photo = photo
-  }
-
-  postOptions = (body) => {
-    return {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    }
   }
 
   textDetection = () => {

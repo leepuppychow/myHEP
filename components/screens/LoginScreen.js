@@ -10,6 +10,8 @@ import {
   AsyncStorage,
 } from 'react-native';
 import Header from '../Header'
+import UserService from '../../services/userService'
+const userService = new UserService()
 
 type Props = {};
 export default class LoginScreen extends Component<Props> {
@@ -22,14 +24,6 @@ export default class LoginScreen extends Component<Props> {
     }
   }
 
-  postOptions = (body) => {
-    return {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    }
-  }
-
   login = () => {
     let email = this.state.email.toLowerCase()
     let password = this.state.password
@@ -39,7 +33,7 @@ export default class LoginScreen extends Component<Props> {
                     "password": password,
                   }
                 }
-    fetch("https://my-hep.herokuapp.com/api/v1/user_token", this.postOptions(body))
+    userService.getUserToken(body)
       .then(result => result.json())
       .then(token => AsyncStorage.setItem('jwt', JSON.stringify(token)))
       .then(() => this.props.navigation.navigate("Home"))

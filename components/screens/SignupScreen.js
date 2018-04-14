@@ -10,6 +10,8 @@ import {
   AsyncStorage,
 } from 'react-native';
 import Header from '../Header'
+import UserService from '../../services/userService'
+const userService = new UserService()
 
 type Props = {};
 export default class SignupScreen extends Component<Props> {
@@ -24,14 +26,6 @@ export default class SignupScreen extends Component<Props> {
       password: "",
     }
   }
-  
-  postOptions = (body) => {
-    return {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    }
-  }
 
   signup = () => {
     let body = {"user":
@@ -43,7 +37,7 @@ export default class SignupScreen extends Component<Props> {
                     "password": this.state.password,
                   }
                 }
-    return fetch("https://my-hep.herokuapp.com/api/v1/users", this.postOptions(body))
+    userService.signup(body)
       .then(response => {
         if(response.status == 400) {
           AlertIOS.alert("Unable to create account, please try again")
@@ -61,7 +55,7 @@ export default class SignupScreen extends Component<Props> {
                     "password": this.state.password,
                   }
                 }
-    fetch("https://my-hep.herokuapp.com/api/v1/user_token", this.postOptions(body))
+    userService.getUserToken(body)
       .then(result => result.json())
       .then(token => AsyncStorage.setItem('jwt', JSON.stringify(token)))
       .then(() => this.props.navigation.navigate("Home"))
