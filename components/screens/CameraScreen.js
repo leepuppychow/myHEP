@@ -13,6 +13,7 @@ import Header from '../Header'
 import { Camera, Permissions } from 'expo'
 import { RNS3 } from 'react-native-aws3'
 import config from '../../config'
+import TextDetector from '../../services/textDetector'
 
 type Props = {};
 export default class CameraScreen extends Component<Props> {
@@ -22,12 +23,18 @@ export default class CameraScreen extends Component<Props> {
     this.state = {
       hasCameraPermission: null,
       type: Camera.Constants.Type.back,
+      file: null,
     }
   }
 
   async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA)
     this.setState( { hasCameraPermission: status === 'granted' })
+  }
+
+  detectText = () => {
+    let text = new TextDetector('photo_YAHHH.jpg')
+    text.textDetection()
   }
 
   ohhSnap = () => {
@@ -73,6 +80,11 @@ export default class CameraScreen extends Component<Props> {
           title='TAKE PICTURE'
           style={ styles.snapButton }
           onPress={ this.ohhSnap }
+        />
+        <Button
+          title='TEXT'
+          style={ styles.snapButton }
+          onPress={ this.detectText }
         />
       </View>
     )
