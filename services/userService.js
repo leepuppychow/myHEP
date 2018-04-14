@@ -6,6 +6,10 @@ class UserService extends Service {
     return fetch(this.base_url() + "user_token", this.postOptions(body))
   }
 
+  signup(body){
+    return fetch(this.base_url() + "users", this.postOptions(body))
+  }
+
 }
 
 module.exports = UserService
