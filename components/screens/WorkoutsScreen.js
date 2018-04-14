@@ -13,7 +13,8 @@ import { TabNavigator } from 'react-navigation'
 import Header from '../Header'
 import WorkoutCard from '../workouts/WorkoutCard'
 import WorkoutsContainer from '../workouts/WorkoutsContainer'
-import CameraScreen from './CameraScreen'
+import WorkoutService from '../../services/workoutService'
+const workoutService = new WorkoutService()
 
 type Props = {};
 export default class WorkoutsScreen extends Component<Props> {
@@ -37,15 +38,10 @@ export default class WorkoutsScreen extends Component<Props> {
 
   getWorkouts = () => {
     this.getToken()
-      .then(token => {
-        fetch("https://my-hep.herokuapp.com/api/v1/workouts",
-          {
-            "headers": {"Authorization": "Bearer " + token}
-          })
-          .then(response => response.json())
-          .then(workouts => this.setState({ workouts }))
-          .catch(error => console.warn({ error }))
-      })
+      .then(token => workoutService.index(token))
+      .then(response =>response.json())
+      .then(workouts => this.setState({ workouts }))
+      .catch(error => console.warn({ error }))
   }
 
   getWorkoutCard = (workout) => {

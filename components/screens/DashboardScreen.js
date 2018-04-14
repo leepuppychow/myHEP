@@ -12,6 +12,8 @@ import {
 import Header from '../Header'
 import WorkoutsContainer from '../workouts/WorkoutsContainer'
 import StepCounter from '../steps/StepCounter'
+import WorkoutService from '../../services/workoutService'
+const workoutService = new WorkoutService()
 
 type Props = {};
 export default class DashboardScreen extends Component<Props> {
@@ -33,15 +35,10 @@ export default class DashboardScreen extends Component<Props> {
 
   getTodaysWorkouts = () => {
     this.getToken()
-      .then(token => {
-        fetch("https://my-hep.herokuapp.com/api/v1/workouts/today",
-          {
-            "headers": {"Authorization": "Bearer " + token}
-          })
-          .then(response => response.json())
-          .then(workouts => this.setState({ workouts }))
-          .catch(error => console.warn({ error }))
-      })
+      .then(token => workoutService.today(token))
+      .then(response => response.json())
+      .then(workouts => this.setState({ workouts }))
+      .catch(error => console.warn({ error }))
   }
 
   render() {
