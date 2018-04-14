@@ -13,7 +13,7 @@ import Header from '../Header'
 import { Camera, Permissions } from 'expo'
 import { RNS3 } from 'react-native-aws3'
 import config from '../../config'
-// import TextDetector from '../../services/textDetector'
+import TextDetector from '../../services/textDetector'
 
 type Props = {};
 export default class CameraScreen extends Component<Props> {
@@ -32,44 +32,12 @@ export default class CameraScreen extends Component<Props> {
     this.setState( { hasCameraPermission: status === 'granted' })
   }
 
-  postOptions = (body) => {
-    return {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    }
-  }
-
-  textDetection = () => {
-    let body = {
-      "requests":[
-        {
-          "image":{
-            "source":{
-              "imageUri": "https://s3.us-east-2.amazonaws.com/my-hep-images/photos/photo_YAHHH.jpg"
-            }
-          },
-          "features":[
-            {
-              "type":"TEXT_DETECTION",
-              "maxResults":1
-            }
-          ]
-        }
-      ]
-    }
-    fetch(`https://vision.googleapis.com/v1/images:annotate?key=${config['GOOGLE_VISION_KEY']}`,
-      this.postOptions(body))
-      .then(result => result.json())
-      .then(response => {
-        let text = response.responses[0].textAnnotations[0].description
-        console.warn(text)
-      })
-      .catch(error => console.warn(error))
+  detectText = () => {
+    let text = new TextDetector('photo_YAHHH.jpg')
+    text.textDetection()
   }
 
   ohhSnap = () => {
-    this.textDetection()
     this.camera.takePictureAsync()
       .then(data => {
         const file = {
@@ -116,7 +84,7 @@ export default class CameraScreen extends Component<Props> {
         <Button
           title='TEXT'
           style={ styles.snapButton }
-          onPress={ this.textDetection }
+          onPress={ this.detectText }
         />
       </View>
     )

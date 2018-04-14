@@ -73,10 +73,10 @@ export default class StepCounter extends Component<Props> {
     return (
       <View style={ styles.container }>
         <Text>
-          Average Steps Per Day Last Week: {this.state.lastWeekStepCount}
+          Average Steps Per Day Last Week - {this.state.lastWeekStepCount}
         </Text>
         <Text>
-          Steps taken today: {this.state.todayStepCount}
+          Steps taken today - {this.state.todayStepCount}
         </Text>
       </View>
     )
