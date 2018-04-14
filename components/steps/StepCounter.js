@@ -22,6 +22,7 @@ export default class StepCounter extends Component<Props> {
       isPedometerAvailable: "checking",
       lastWeekStepCount: 0,
       todayStepCount: 0,
+      currentStepCount: 0,
     }
   }
 
@@ -54,7 +55,9 @@ export default class StepCounter extends Component<Props> {
   }
 
   _subscribe = () => {
-    this._subscription = Pedometer.watchStepCount();
+    this._subscription = Pedometer.watchStepCount(result => {
+      this.setState({ currentStepCount: result.steps })
+    });
 
     Pedometer.isAvailableAsync()
       .then(result => this.setState({ isPedometerAvailable: String(result) }))
@@ -69,14 +72,18 @@ export default class StepCounter extends Component<Props> {
     this._subscription = null
   }
 
+  todayStepsRealTime = () => {
+    return this.state.todayStepCount + this.state.currentStepCount
+  }
+
   render() {
     return (
       <View style={ styles.container }>
         <Text>
-          Average Steps Per Day Last Week - {this.state.lastWeekStepCount}
+          Average Steps Per Day Last Week: {this.state.lastWeekStepCount}
         </Text>
         <Text>
-          Steps taken today - {this.state.todayStepCount}
+          Steps taken today: {this.todayStepsRealTime()}
         </Text>
       </View>
     )
