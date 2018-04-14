@@ -45,7 +45,6 @@ export default class DashboardScreen extends Component<Props> {
     return (
       <View style={ styles.container }>
         <Text style={ styles.sectionHeader }>Your Steps:</Text>
-        <StepCounter />
         <Text style={ styles.sectionHeader }>Today's Workout:</Text>
         <WorkoutsContainer workouts={ this.state.workouts } />
       </View>
