@@ -72,10 +72,6 @@ export default class StepCounter extends Component<Props> {
     this._subscription = null
   }
 
-  todayStepsRealTime = () => {
-    return this.state.todayStepCount + this.state.currentStepCount
-  }
-
   render() {
     return (
       <View style={ styles.container }>
@@ -83,7 +79,7 @@ export default class StepCounter extends Component<Props> {
           Average Steps Per Day Last Week: {this.state.lastWeekStepCount}
         </Text>
         <Text>
-          Steps taken today: {this.todayStepsRealTime()}
+          Steps taken today: {this.state.todayStepCount}
         </Text>
       </View>
     )
