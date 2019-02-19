@@ -10,7 +10,6 @@ import {
   AsyncStorage,
 } from 'react-native';
 import Header from '../Header'
-import config from '../../config'
 import { Pedometer } from 'expo'
 
 export default class StepCounter extends Component {

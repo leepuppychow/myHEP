@@ -12,8 +12,8 @@ import {
 import Header from '../Header'
 import { Camera, Permissions } from 'expo'
 import { RNS3 } from 'react-native-aws3'
-import config from '../../config'
 import TextDetector from '../../services/textDetector'
+import { S3_BUCKET_ACCESS_KEY, S3_BUCKET_SECRET_KEY } from 'react-native-dotenv';
 
 export default class CameraScreen extends Component {
 
@@ -49,8 +49,8 @@ export default class CameraScreen extends Component {
           keyPrefix: 'photos/',
           bucket: 'my-hep-images',
           region: 'us-east-2',
-          accessKey: config['ACCESS_KEY'],
-          secretKey: config['SECRET_KEY'],
+          accessKey: S3_BUCKET_ACCESS_KEY,
+          secretKey: S3_BUCKET_SECRET_KEY,
           successActionStatus: 201,
         }
 

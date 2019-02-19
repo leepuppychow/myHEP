@@ -1,5 +1,5 @@
-import config from '../config'
 import Service from './service'
+import { GOOGLE_VISION_KEY } from 'react-native-dotenv';
 
 class TextDetector extends Service {
   constructor(photo) {
@@ -25,7 +25,7 @@ class TextDetector extends Service {
         }
       ]
     }
-    fetch(`https://vision.googleapis.com/v1/images:annotate?key=${config['GOOGLE_VISION_KEY']}`,
+    fetch(`https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_VISION_KEY}`,
       this.postOptions(body))
       .then(result => result.json())
       .then(response => {
