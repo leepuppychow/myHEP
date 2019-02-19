@@ -12,8 +12,7 @@ import {
 } from 'react-native';
 import WorkoutCard from './WorkoutCard'
 
-type Props = {};
-export default class WorkoutsContainer extends Component<Props> {
+export default class WorkoutsContainer extends Component {
   render() {
     return (
       <ScrollView>

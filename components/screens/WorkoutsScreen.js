@@ -16,8 +16,7 @@ import WorkoutsContainer from '../workouts/WorkoutsContainer'
 import WorkoutService from '../../services/workoutService'
 const workoutService = new WorkoutService()
 
-type Props = {};
-export default class WorkoutsScreen extends Component<Props> {
+export default class WorkoutsScreen extends Component {
 
   constructor() {
     super()

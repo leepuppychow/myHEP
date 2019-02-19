@@ -9,8 +9,7 @@ import {
   Image,
 } from 'react-native';
 
-type Props = {};
-export default class ExerciseCard extends Component<Props> {
+export default class ExerciseCard extends Component {
   render() {
     return (
       <View style={styles.container}>

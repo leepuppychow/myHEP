@@ -13,8 +13,7 @@ import Header from '../Header'
 import config from '../../config'
 import { Pedometer } from 'expo'
 
-type Props = {};
-export default class StepCounter extends Component<Props> {
+export default class StepCounter extends Component {
 
   constructor() {
     super()

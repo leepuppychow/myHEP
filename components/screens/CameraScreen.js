@@ -15,8 +15,7 @@ import { RNS3 } from 'react-native-aws3'
 import config from '../../config'
 import TextDetector from '../../services/textDetector'
 
-type Props = {};
-export default class CameraScreen extends Component<Props> {
+export default class CameraScreen extends Component {
 
   constructor() {
     super()

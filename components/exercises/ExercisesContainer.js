@@ -11,8 +11,7 @@ import {
 } from 'react-native';
 import ExerciseCard from './ExerciseCard'
 
-type Props = {};
-export default class ExercisesContainer extends Component<Props> {
+export default class ExercisesContainer extends Component {
   render() {
     return (
       <View style={styles.container}>

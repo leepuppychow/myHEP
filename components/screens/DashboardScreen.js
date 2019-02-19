@@ -15,8 +15,7 @@ import StepCounter from '../steps/StepCounter'
 import WorkoutService from '../../services/workoutService'
 const workoutService = new WorkoutService()
 
-type Props = {};
-export default class DashboardScreen extends Component<Props> {
+export default class DashboardScreen extends Component {
 
   constructor() {
     super()

@@ -10,8 +10,6 @@ import LoginScreen from './components/screens/LoginScreen'
 import HomeScreen from './components/screens/HomeScreen'
 import SignupScreen from './components/screens/SignupScreen'
 
-type Props = {};
-
 const RootStack = StackNavigator(
   {
     Login: {
@@ -30,7 +28,7 @@ const RootStack = StackNavigator(
   }
 )
 
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return <RootStack />
   }

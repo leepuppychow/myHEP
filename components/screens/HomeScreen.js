@@ -40,8 +40,7 @@ const routeConfig = {
 
 const HomeNav = TabNavigator(routeConfig, navConfig)
 
-type Props = {};
-export default class HomeScreen extends Component<Props> {
+export default class HomeScreen extends Component {
 
   render() {
     return (

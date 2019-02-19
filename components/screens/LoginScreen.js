@@ -13,8 +13,7 @@ import Header from '../Header'
 import UserService from '../../services/userService'
 const userService = new UserService()
 
-type Props = {};
-export default class LoginScreen extends Component<Props> {
+export default class LoginScreen extends Component {
 
   constructor() {
     super()
